@@ -1,107 +1,83 @@
-/* General body styling */
 body {
     font-family: 'Roboto', sans-serif;
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #f4f4f4;
+    background-color: #374e3b; /* Dark pastel green */
+    color: #f0f0f0; /* Light color for body text to improve readability */
+    margin: 0;
+    padding: 0;
 }
 
-/* Title and headings */
-h1, h2 {
+h1 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    color: #2c3e50;
     text-align: center;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    color: #d9ead3; /* Light pastel green for the heading */
 }
 
-/* General styling for visual containers */
-.visual-container {
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #f0f0f0; /* Light color for subheadings */
+}
+
+.container {
     width: 90%;
-    max-width: 1200px;
-    margin: 40px 0;
+    margin: auto;
+    padding: 20px;
 }
 
-/* Description text styling */
-.description, .radar-description, .chart-description {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    color: #34495e;
+.title-container {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.visualization {
+    margin-bottom: 40px;
+    background: #a8c3a3; /* Lighter pastel green */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.description {
+    color: #374e3b; /* Dark pastel green for description text */
     font-size: 16px;
     margin-top: 10px;
-    margin-bottom: 30px;
 }
 
-/* Map styling */
-#map {
-    width: 100%;
-    height: 500px;
-    margin-bottom: 40px;
-}
-
-/* Radar chart and description */
-.radar-container {
+.two-column {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
-    margin-bottom: 60px;
-    gap: 20px; /* Adds spacing between the radar chart and description */
+    justify-content: space-between;
 }
 
-/* Adjust radar chart container width */
-#radar-chart {
-    width: 60%;
-    height: 500px;
+.chart {
+    flex: 1;
 }
 
-/* Radar description next to chart */
-.radar-description {
-    width: 35%;
-    text-align: left;
+.description-right {
+    flex: 1;
+    margin-left: 20px;
+    color: #374e3b; /* Dark pastel green for description text */
 }
 
-/* Bubble chart full width */
-#bubble-chart {
-    width: 100%;
-    height: 500px;
-    margin-bottom: 40px;
-}
-
-/* Grid layout for line chart and scatter plot with descriptions */
-.chart-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 40px;
-    margin-bottom: 60px;
-}
-
-/* Chart sizes */
-#radar-chart, #line-chart, #scatter-plot {
-    width: 100%;
-    height: 500px;
-}
-
-/* Styling for descriptions next to charts */
-.chart-description {
-    text-align: left;
-    font-size: 16px;
-}
-
-/* Additional styling for chart titles */
-h2 {
+.footer {
+    background-color: #3e563d; /* Darker green for footer */
+    padding: 20px;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 24px;
-    color: #2c3e50;
-    margin-bottom: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #ccc;
+    font-size: 14px;
+    color: #f0f0f0; /* Light color for text in the footer */
 }
 
-/* Specific styling for chart grid titles (line and scatter) */
-.chart-grid h2 {
-    grid-column: span 2;
-    margin-bottom: 10px;
+@media (max-width: 768px) {
+    .two-column {
+        flex-direction: column;
+    }
+
+    .description-right {
+        margin-left: 0;
+        margin-top: 20px;
+    }
 }
+

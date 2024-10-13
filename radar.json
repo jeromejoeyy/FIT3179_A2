@@ -16,7 +16,7 @@
             "New South Wales", "Victoria", "Queensland", "South Australia",
             "Western Australia", "Tasmania", "Northern Territory", "Australian Capital Territory"
           ],
-          "name": "Select first region"
+          "name": "Select first region: "
         }
       },
       {
@@ -28,7 +28,7 @@
             "New South Wales", "Victoria", "Queensland", "South Australia",
             "Western Australia", "Tasmania", "Northern Territory", "Australian Capital Territory"
           ],
-          "name": "Select second region"
+          "name": "Select second region: "
         }
       },
       {
@@ -39,7 +39,7 @@
           "min": 1912,
           "max": 2022,
           "step": 1,
-          "name": "Select the year to view"
+          "name": "Select the year to view: "
         }
       }
     ],
