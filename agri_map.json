@@ -3,7 +3,7 @@
   "width": 1000,
   "height": 500,
   "data": {
-    "url": "https://raw.githubusercontent.com/jeromejoeyy/FIT3179/refs/heads/main/tonnes_data.csv"
+    "url": "https://raw.githubusercontent.com/jeromejoeyy/FIT3179_A2/refs/heads/main/tonnes_data.csv"
   },
   "transform": [
     {
