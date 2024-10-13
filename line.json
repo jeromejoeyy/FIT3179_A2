@@ -1,51 +1,53 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 600,
-    "height": 500,
-    "data": {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 500,
+  "data": {
       "url": "https://raw.githubusercontent.com/jeromejoeyy/FIT3179_A2/refs/heads/main/agriculture_data.csv",
       "format": {
-        "type": "csv"
+          "type": "csv"
       }
-    },
-    "params": [
+  },
+  "params": [
       {
-        "name": "commodity",
-        "value": "Oats",  
-        "bind": {
-          "input": "select",
-          "options": ["Barley", "Maize", "Oats", "Wheat", "Potatoes"],  
-          "name": "Select Commodity to View: "
-        }
+          "name": "commodity",
+          "value": "Oats",  
+          "bind": {
+              "input": "select",
+              "options": ["Barley", "Maize", "Oats", "Wheat", "Potatoes"],  
+              "name": "Select Commodity to View: "
+          }
       }
-    ],
-    "transform": [
+  ],
+  "transform": [
       {
-        "filter": "datum.Commodity == commodity"
+          "filter": "datum.Commodity == commodity"
+      },
+      {
+          "filter": "datum.Year >= 1990" 
       }
-    ],
-    "mark": "line",
-    "encoding": {
+  ],
+  "mark": "line",
+  "encoding": {
       "x": {
-        "field": "Year",
-        "type": "temporal",
-        "title": "Year"
+          "field": "Year",
+          "type": "temporal",
+          "title": "Year"
       },
       "y": {
-        "field": "Value",
-        "type": "quantitative",
-        "title": "Production (Tonnes)"
+          "field": "Value",
+          "type": "quantitative",
+          "title": "Production (Tonnes)"
       },
       "color": {
-        "field": "Region label",
-        "type": "nominal",
-        "title": "Region"
+          "field": "Region label",
+          "type": "nominal",
+          "title": "Region"
       },
       "tooltip": [
-        {"field": "Region label", "type": "nominal", "title": "Region"},
-        {"field": "Year", "type": "temporal", "title": "Year"},
-        {"field": "Value", "type": "quantitative", "title": "Production"}
+          {"field": "Region label", "type": "nominal", "title": "Region"},
+          {"field": "Year", "type": "temporal", "title": "Year"},
+          {"field": "Value", "type": "quantitative", "title": "Production"}
       ]
-    }
   }
-  
+}
