@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega/v5.json",
     "description": "Radar chart with region and year selection.",
-    "width": 300,
+    "width": 200,
     "height": 300,
     "padding": 40,
   
