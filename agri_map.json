@@ -1,0 +1,108 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 1000,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jeromejoeyy/FIT3179/refs/heads/main/tonnes_data.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Commodity === commodity" 
+    },
+    {
+      "filter": "datum.Year == year"  
+    },
+    {
+      "aggregate": [
+        {
+          "op": "sum",
+          "field": "Value",
+          "as": "Total Production"
+        }
+      ],
+      "groupby": ["Region label", "Year"]
+    },
+    {
+      "lookup": "Region label",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/jeromejoeyy/FIT3179_A2/refs/heads/main/oceania_states.json",
+          "format": {
+            "type": "topojson",
+            "feature": "STE_2016_AUST"
+          }
+        },
+        "key": "properties.STE_NAME16",
+        "fields": ["type", "geometry"]
+      }
+    },
+    {
+      "calculate": "isValid(datum['Total Production']) ? datum['Total Production'] : 0",
+      "as": "Total Production"
+    }
+  ],
+  "params": [
+    {
+      "name": "year",
+      "value": 2022,  
+      "bind": {
+        "input": "range",
+        "min": 1912,
+        "max": 2022,
+        "step": 1,
+        "name": "Select Year to View: "
+      }
+    },
+    {
+      "name": "commodity",
+      "value": "Oats",  
+      "bind": {
+        "input": "select",
+        "options": ["Barley", "Maize", "Oats", "Wheat", "Potatoes"],  
+        "name": "Select Commodity to View: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "projection": {
+        "type": "mercator",
+        "scale": 900,   
+        "center": [133.7751, -25.2744]  
+      },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "black",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "color": {
+          "field": "Total Production",
+          "type": "quantitative",
+          "title": "Total Production (tonnes)",
+          "scale": {"scheme": "blues"}
+        },
+        "tooltip": [
+          {"field": "Region label", "type": "nominal", "title": "State"},
+          {"field": "Total Production", "type": "quantitative", "title": "Production (tonnes)"},
+          {"field": "Year", "type": "quantitative", "title": "Year"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "graticule": {"step": [10, 10]}
+      },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#888",
+        "strokeWidth": 0.5
+      },
+      "projection": {
+        "type": "mercator",
+        "scale": 900,   
+        "center": [133.7751, -25.2744]
+      }
+    }
+  ]
+}

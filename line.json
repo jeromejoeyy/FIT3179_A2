@@ -1,0 +1,50 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing trends in commodity production over time for different regions.",
+    "data": {
+      "url": "https://raw.githubusercontent.com/jeromejoeyy/FIT3179_A2/refs/heads/main/agriculture_data.csv",
+      "format": {
+        "type": "csv"
+      }
+    },
+    "params": [
+      {
+        "name": "commodity",
+        "value": "Oats",  
+        "bind": {
+          "input": "select",
+          "options": ["Barley", "Maize", "Oats", "Wheat", "Potatoes"],  
+          "name": "Select Commodity to View: "
+        }
+      }
+    ],
+    "transform": [
+      {
+        "filter": "datum.Commodity == commodity"
+      }
+    ],
+    "mark": "line",
+    "encoding": {
+      "x": {
+        "field": "Year",
+        "type": "temporal",
+        "title": "Year"
+      },
+      "y": {
+        "field": "Value",
+        "type": "quantitative",
+        "title": "Production (Tonnes)"
+      },
+      "color": {
+        "field": "Region label",
+        "type": "nominal",
+        "title": "Region"
+      },
+      "tooltip": [
+        {"field": "Region label", "type": "nominal", "title": "Region"},
+        {"field": "Year", "type": "temporal", "title": "Year"},
+        {"field": "Value", "type": "quantitative", "title": "Production"}
+      ]
+    }
+  }
+  

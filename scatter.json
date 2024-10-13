@@ -1,0 +1,51 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Scatter plot showing the relationship between hectares and production output by commodity across all regions.",
+    "data": {
+      "url": "https://raw.githubusercontent.com/jeromejoeyy/FIT3179_A2/refs/heads/main/agriculture_data.csv",
+      "format": {
+        "type": "csv"
+      }
+    },
+    "params": [
+      {
+        "name": "commodity",
+        "value": "Barley",
+        "bind": {
+          "input": "select",
+          "options": ["Barley", "Maize", "Oats", "Wheat", "Potatoes"],
+          "name": "Select Commodity to View: "
+        }
+      }
+    ],
+    "transform": [
+      {
+        "filter": "datum.Commodity === commodity"  
+      }
+    ],
+    "mark": "point",
+    "encoding": {
+      "x": {
+        "field": "Hectares",
+        "type": "quantitative",
+        "title": "Hectares"
+      },
+      "y": {
+        "field": "Value",
+        "type": "quantitative",
+        "title": "Production (Tonnes)"
+      },
+      "color": {
+        "field": "Region label",
+        "type": "nominal",
+        "title": "Region"
+      },
+      "tooltip": [
+        {"field": "Region label", "type": "nominal", "title": "Region"},
+        {"field": "Commodity", "type": "nominal", "title": "Commodity"},
+        {"field": "Hectares", "type": "quantitative", "title": "Hectares"},
+        {"field": "Value", "type": "quantitative", "title": "Production"}
+      ]
+    }
+  }
+  

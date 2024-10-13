@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural Visualisations</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+
+    <h1>Agricultural Visualisations</h1>
+    
+    <div class="visual-container">
+        <h2>Agricultural Production Map</h2>
+        <div id="map"></div>
+        <p class="description">
+            This map visualizes the total agricultural commodity production in Australia from 1912 to 2022. 
+            It provides a comprehensive overview of how production varies across different regions and commodities.
+        </p>
+    </div>
+
+    <div class="visual-container chart-grid">
+        <h2>Commodity Production Radar Chart</h2> 
+        <div id="radar-chart"></div>
+        <p class="radar-description">
+            The radar chart compares production levels of different commodities for a selected region and year. 
+            It highlights the variety of crops produced and their relative quantities.
+        </p>
+    </div>
+
+    <div class="visual-container">
+        <h2>Production and Hectares</h2>
+        <div id="bubble-chart"></div>
+        <p class="description">
+            The bubble chart illustrates the relationship between the production of various commodities and the 
+            hectares used for cultivation.
+        </p>
+    </div>
+
+    <div class="visual-container chart-grid">
+        <h2>Agricultural Production Line Chart</h2> 
+        <div id="line-chart"></div>
+        <p class="chart-description">
+            This line chart shows agricultural production trends over the years for selected commodities. 
+        </p>
+    </div>
+
+    <div class="visual-container chart-grid">
+        <h2>Agricultural Production Scatter Plot</h2> 
+        <div id="scatter-plot"></div>
+        <p class="chart-description">
+            The scatter plot shows the correlation between production value and hectares for different commodities.
+        </p>
+    </div>
+
+    <script>
+        // Load the choropleth map
+        vegaEmbed('#map', 'https://raw.githubusercontent.com/jeromejoeyy/FIT3179_A2/refs/heads/main/agri_map.json')
+            .then(function(result) {
+                console.log("Map loaded");
+            })
+            .catch(console.error);
+
+        // Load the bubble chart
+        vegaEmbed('#bubble-chart', 'https://raw.githubusercontent.com/jeromejoeyy/FIT3179_A2/refs/heads/main/bubble.json')
+            .then(function(result) {
+                console.log("Bubble chart loaded");
+            })
+            .catch(console.error);
+
+        // Load the radar chart
+        vegaEmbed('#radar-chart', 'https://raw.githubusercontent.com/jeromejoeyy/FIT3179_A2/refs/heads/main/radar.json')
+            .then(function(result) {
+                console.log("Radar chart loaded");
+            })
+            .catch(console.error);
+
+        // Load the line chart
+        vegaEmbed('#line-chart', 'https://raw.githubusercontent.com/jeromejoeyy/FIT3179_A2/refs/heads/main/line.json')
+            .then(function(result) {
+                console.log("Line chart loaded");
+            })
+            .catch(console.error);
+
+        // Load the scatter plot
+        vegaEmbed('#scatter-plot', 'https://raw.githubusercontent.com/jeromejoeyy/FIT3179_A2/refs/heads/main/scatter.json')
+            .then(function(result) {
+                console.log("Scatter plot loaded");
+            })
+            .catch(console.error);
+    </script>
+
+</body>
+</html>

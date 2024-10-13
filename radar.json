@@ -1,0 +1,201 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "description": "Radar chart with region and year selection.",
+    "width": 300,
+    "height": 400,
+    "padding": 40,
+  
+    "signals": [
+      {"name": "radius", "update": "width / 2"},
+      {
+        "name": "selectedRegion1",
+        "value": "New South Wales",
+        "bind": {
+          "input": "select",
+          "options": [
+            "New South Wales", "Victoria", "Queensland", "South Australia",
+            "Western Australia", "Tasmania", "Northern Territory", "Australian Capital Territory"
+          ],
+          "name": "Select first region"
+        }
+      },
+      {
+        "name": "selectedRegion2",
+        "value": "Victoria",
+        "bind": {
+          "input": "select",
+          "options": [
+            "New South Wales", "Victoria", "Queensland", "South Australia",
+            "Western Australia", "Tasmania", "Northern Territory", "Australian Capital Territory"
+          ],
+          "name": "Select second region"
+        }
+      },
+      {
+        "name": "selectedYear",
+        "value": 2022,
+        "bind": {
+          "input": "range",
+          "min": 1912,
+          "max": 2022,
+          "step": 1,
+          "name": "Select the year to view"
+        }
+      }
+    ],
+  
+    "data": [
+      {
+        "name": "table",
+        "url": "https://raw.githubusercontent.com/jeromejoeyy/FIT3179_A2/refs/heads/main/agriculture_data.csv",
+        "format": {"type": "csv"},
+        "transform": [
+          {
+            "type": "filter",
+            "expr": "(datum['Region label'] == selectedRegion1 || datum['Region label'] == selectedRegion2) && datum.Year == selectedYear"
+          }
+        ]
+      },
+      {
+        "name": "keys",
+        "source": "table",
+        "transform": [
+          {"type": "aggregate", "groupby": ["Commodity"]}
+        ]
+      }
+    ],
+  
+    "scales": [
+      {
+        "name": "angular",
+        "type": "point",
+        "range": {"signal": "[-PI, PI]"},
+        "padding": 0.5,
+        "domain": {"data": "table", "field": "Commodity"}
+      },
+      {
+        "name": "radial",
+        "type": "log",
+        "range": {"signal": "[0, radius]"},
+        "zero": true,
+        "nice": false,
+        "domain": {"data": "table", "field": "Value"},
+        "domainMin": 1
+      },
+      {
+        "name": "color",
+        "type": "ordinal",
+        "domain": [{"signal": "selectedRegion1"}, {"signal": "selectedRegion2"}],
+        "range": ["#1f77b4", "#ff7f0e"]
+      }
+    ],
+  
+    "encode": {
+      "enter": {
+        "x": {"signal": "radius"},
+        "y": {"signal": "radius"}
+      }
+    },
+  
+    "marks": [
+      {
+        "type": "group",
+        "name": "categories",
+        "zindex": 1,
+        "from": {
+          "facet": {"data": "table", "name": "facet", "groupby": ["Region label"]}
+        },
+        "marks": [
+          {
+            "type": "line",
+            "name": "region-line",
+            "from": {"data": "facet"},
+            "encode": {
+              "enter": {
+                "interpolate": {"value": "linear-closed"},
+                "x": {"signal": "scale('radial', datum.Value) * cos(scale('angular', datum.Commodity))"},
+                "y": {"signal": "scale('radial', datum.Value) * sin(scale('angular', datum.Commodity))"},
+                "stroke": {"scale": "color", "field": "Region label"},
+                "strokeWidth": {"value": 1},
+                "fill": {"scale": "color", "field": "Region label"},
+                "fillOpacity": {"value": 0.1}
+              },
+              "update": {
+                "tooltip": {"signal": "{'Region': datum['Region label'], 'Commodity': datum.Commodity, 'Value': datum.Value}"}
+              }
+            }
+          },
+          {
+            "type": "text",
+            "name": "value-text",
+            "from": {"data": "region-line"},
+            "encode": {
+              "enter": {
+                "x": {"signal": "datum.x"},
+                "y": {"signal": "datum.y"},
+                "text": {"signal": "datum.datum.Value"},
+                "align": {"value": "center"},
+                "baseline": {"value": "middle"},
+                "fill": {"value": "black"}
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "name": "radial-grid",
+        "from": {"data": "keys"},
+        "zindex": 0,
+        "encode": {
+          "enter": {
+            "x": {"value": 0},
+            "y": {"value": 0},
+            "x2": {"signal": "radius * cos(scale('angular', datum.Commodity))"},
+            "y2": {"signal": "radius * sin(scale('angular', datum.Commodity))"},
+            "stroke": {"value": "lightgray"},
+            "strokeWidth": {"value": 1}
+          }
+        }
+      },
+      {
+        "type": "text",
+        "name": "key-label",
+        "from": {"data": "keys"},
+        "zindex": 1,
+        "encode": {
+          "enter": {
+            "x": {"signal": "(radius + 5) * cos(scale('angular', datum.Commodity))"},
+            "y": {"signal": "(radius + 5) * sin(scale('angular', datum.Commodity))"},
+            "text": {"field": "Commodity"},
+            "align": [
+              {"test": "abs(scale('angular', datum.Commodity)) > PI / 2", "value": "right"},
+              {"value": "left"}
+            ],
+            "baseline": [
+              {"test": "scale('angular', datum.Commodity) > 0", "value": "top"},
+              {"test": "scale('angular', datum.Commodity) == 0", "value": "middle"},
+              {"value": "bottom"}
+            ],
+            "fill": {"value": "black"},
+            "fontWeight": {"value": "bold"}
+          }
+        }
+      },
+      {
+        "type": "line",
+        "name": "outer-line",
+        "from": {"data": "radial-grid"},
+        "encode": {
+          "enter": {
+            "interpolate": {"value": "linear-closed"},
+            "x": {"field": "x2"},
+            "y": {"field": "y2"},
+            "stroke": {"value": "lightgray"},
+            "strokeWidth": {"value": 1}
+          }
+        }
+      }
+    ]
+  }
+  

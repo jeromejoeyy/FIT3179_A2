@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jeromejoeyy/FIT3179_A2/refs/heads/main/agriculture_data.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Year == year"
+    }
+  ],
+  "params": [
+    {
+      "name": "year",
+      "value": 1912,
+      "bind": {
+        "input": "range",
+        "min": 1912,
+        "max": 2022,
+        "step": 1,
+        "name": "Select Year to View: "
+      }
+    }
+  ],
+  "mark": "circle",
+  "encoding": {
+    "x": {
+      "field": "Commodity",
+      "type": "nominal",
+      "title": "Commodity"
+    },
+    "y": {
+      "field": "Value",
+      "type": "quantitative",
+      "title": "Production (Tonnes)"
+    },
+    "size": {
+      "field": "Hectares",
+      "type": "quantitative",
+      "title": "Hectares",
+      "scale": {"range": [100, 1000]}
+    },
+    "color": {
+      "field": "Region label",
+      "type": "nominal",
+      "title": "Region"
+    },
+    "tooltip": [
+      {"field": "Region label", "title": "Region"},
+      {"field": "Commodity", "title": "Commodity"},
+      {"field": "Year", "title": "Year"},
+      {"field": "Value", "title": "Production (Tonnes)"},
+      {"field": "Hectares", "title": "Hectares"}
+    ]
+  }
+}

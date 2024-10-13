@@ -1,0 +1,107 @@
+/* General body styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f4f4f4;
+}
+
+/* Title and headings */
+h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* General styling for visual containers */
+.visual-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px 0;
+}
+
+/* Description text styling */
+.description, .radar-description, .chart-description {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #34495e;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+/* Map styling */
+#map {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 40px;
+}
+
+/* Radar chart and description */
+.radar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    gap: 20px; /* Adds spacing between the radar chart and description */
+}
+
+/* Adjust radar chart container width */
+#radar-chart {
+    width: 60%;
+    height: 500px;
+}
+
+/* Radar description next to chart */
+.radar-description {
+    width: 35%;
+    text-align: left;
+}
+
+/* Bubble chart full width */
+#bubble-chart {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 40px;
+}
+
+/* Grid layout for line chart and scatter plot with descriptions */
+.chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+    margin-bottom: 60px;
+}
+
+/* Chart sizes */
+#radar-chart, #line-chart, #scatter-plot {
+    width: 100%;
+    height: 500px;
+}
+
+/* Styling for descriptions next to charts */
+.chart-description {
+    text-align: left;
+    font-size: 16px;
+}
+
+/* Additional styling for chart titles */
+h2 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Specific styling for chart grid titles (line and scatter) */
+.chart-grid h2 {
+    grid-column: span 2;
+    margin-bottom: 10px;
+}
