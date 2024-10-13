@@ -43,6 +43,8 @@ h2 {
     margin-top: 10px;
     line-height: 1.4;
     max-width: 900px;
+    text-align: center;
+    margin-left: 500px;
 }
 
 .two-column {
