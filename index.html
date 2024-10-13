@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Visualizations</title>
+    <title>Australia Agriculture</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
@@ -12,70 +12,70 @@
 </head>
 <body>
     <div class="container">
-        <h1>Data Visualizations Overview</h1>
+        <h1>Understanding Australia's Agriculture Production</h1>
 
         <!-- Agriculture Map Title -->
         <div class="title-container">
-            <h2>Agriculture Map</h2>
+            <h2>Production of Commodities each year</h2>
         </div>
         <!-- Agriculture Map Visualization -->
         <div class="visualization">
             <div id="agri_map"></div>
-            <p class="description">An overview of agriculture data across various regions.</p>
+            <p class="description">Visualise regional agricultural production across Australia’s diverse commodities.</p>
         </div>
 
         <!-- Radar Chart Title -->
         <div class="title-container">
-            <h2>Radar Chart Analysis</h2>
+            <h2>Comparing Production between States</h2>
         </div>
         <!-- Radar Chart Visualization -->
         <div class="visualization two-column">
             <div class="chart" id="radar"></div>
             <div class="description-right">
-                <p>Comparative radar chart showcasing different dimensions of data.</p>
+                <p>Compare multiple commodities to assess their production strengths visually.</p>
             </div>
         </div>
 
         <!-- Bubble Chart Title -->
         <div class="title-container">
-            <h2>Bubble Chart</h2>
+            <h2>Production vs Hectares</h2>
         </div>
         <!-- Bubble Chart Visualization -->
         <div class="visualization">
             <div id="bubble"></div>
-            <p class="description">Bubble chart depicting the size and importance of various categories.</p>
+            <p class="description">Observe relationships between commodities, production values, and regions clearly.</p>
         </div>
 
         <!-- Line Chart Title -->
         <div class="title-container">
-            <h2>Line Chart Trends</h2>
+            <h2>Production Trends</h2>
         </div>
         <!-- Line Chart Visualization -->
         <div class="visualization two-column">
             <div class="chart" id="line"></div>
             <div class="description-right">
-                <p>Line chart illustrating trends over time in the dataset.</p>
+                <p>Tracking production trends over time for key agricultural commodities.</p>
             </div>
         </div>
 
         <!-- Scatter Plot Title -->
         <div class="title-container">
-            <h2>Scatter Plot Insights</h2>
+            <h2>Production & Hectares Trends</h2>
         </div>
         <!-- Scatter Plot Visualization -->
         <div class="visualization two-column">
             <div class="chart" id="scatter"></div>
             <div class="description-right">
-                <p>Scatter plot revealing relationships between different data points.</p>
+                <p>Analyzing correlation between production and year across commodities effectively.</p>
             </div>
         </div>
     </div>
 
     <!-- Footer Section -->
     <footer class="footer">
-        <p><strong>Author:</strong> [Your Name]</p>
-        <p><strong>Date:</strong> [Current Date]</p>
-        <p><strong>Data Source:</strong> [Data Source Information]</p>
+        <p><strong>Author:</strong> Jerome Tan</p>
+        <p><strong>Date:</strong> 13/10/2024</p>
+        <p><strong>Data Source:</strong> https://www.abs.gov.au/statistics/industry/agriculture/agricultural-commodities-australia/latest-release#data-downloads</p>
     </footer>
 
     <script>
