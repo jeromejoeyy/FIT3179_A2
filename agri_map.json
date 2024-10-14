@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 1500,
-  "height": 500,
+  "height": 800,
   "data": {
     "url": "https://raw.githubusercontent.com/jeromejoeyy/FIT3179_A2/refs/heads/main/tonnes_data.csv"
   },
